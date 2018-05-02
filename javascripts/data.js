@@ -1,7 +1,9 @@
 const loadFishes = require('./fishes');
+const writeFishes = require('./fishDom');
 
 const whenFishesLoad = (data) => {
   console.log(data);
+  $('#available').append(writeFishes(data.fishes));
 };
 
 const errorFunction = () => {
