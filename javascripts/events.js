@@ -21,7 +21,16 @@ const filterFish = () => {
 const moveToCart = (e) => {
   const fishCard = $(e.target).closest('.fish');
   $('#snagged').append(fishCard);
-  // $('input').val()
+  $(e.target).text('Remove From Basket');
+  $(e.target).on('click', returnToCart);
+};
+
+// Remove from basket
+const returnToCart = (e) => {
+  const fishCard = $(e.target).closest('.fish'); // closest parent with class of fish (button, in this case)
+  $('#available').append(fishCard);
+  $(e.target).text('Add To Basket');
+  $(e.target).on('click', moveToCart);
 };
 
 const bindEvents = () => {
