@@ -21,20 +21,19 @@ const filterFish = () => {
 const moveToCart = (e) => {
   const fishCard = $(e.target).closest('.fish');
   $('#snagged').append(fishCard);
-  $(e.target).text('Remove From Basket');
-  $(e.target).on('click', returnToCart);
+  $(e.target).text('Remove From Basket').removeClass('add').addClass('remove');
 };
 
 // Remove from basket
 const returnToCart = (e) => {
   const fishCard = $(e.target).closest('.fish'); // closest parent with class of fish (button, in this case)
   $('#available').append(fishCard);
-  $(e.target).text('Add To Basket');
-  $(e.target).on('click', moveToCart);
+  $(e.target).text('Add To Basket').removeClass('remove').addClass('add');
 };
 
 const bindEvents = () => {
-  $('button.add').on('click', moveToCart);
+  $('body').on('click', '.remove', returnToCart);
+  $('body').on('click', '.add', moveToCart);
 
   $('#show-sale').click(() => {
     changeButtonText();
